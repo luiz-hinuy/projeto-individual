@@ -18,6 +18,10 @@
 
 ## <a name="c1"></a>1. Introdução (Semana 01)
 
+O projeto consiste no desenvolvimento de um sistema de agendamentos de salas, onde usuários podem reservar horários disponíveis para uso de ambientes cadastrados. A aplicação será estruturada utilizando Node.js com o framework Express.js, e seguirá o padrão arquitetural MVC (Model-View-Controller), promovendo organização, separação de responsabilidades e escalabilidade.
+
+O sistema será útil em ambientes corporativos, educacionais ou coworkings, permitindo que usuários visualizem, agendem e consultem reservas de salas. A primeira entrega tem como foco estruturar o backend da aplicação, organizar as pastas e arquivos do projeto, modelar o banco de dados e garantir que o servidor esteja rodando corretamente com uma rota funcional.
+
 *Preencha com até 300 palavras – sem necessidade de fonte.*
 *Descreva brevemente o sistema que você irá desenvolver.*
 
@@ -38,6 +42,14 @@
 ## <a name="c3"></a>3. Projeto da Aplicação Web
 
 ### 3.1. Modelagem do banco de dados  (Semana 3)
+
+Foi realizada uma modelagem de banco de dados que atende à lógica central do sistema: usuários reservando salas em horários específicos. A modelagem foi dividida em duas etapas complementares: o modelo relacional (diagrama) e o modelo físico (código SQL).
+
+O modelo relacional apresenta graficamente as entidades principais do sistema (users, rooms, bookings) e os relacionamentos entre elas. Ele permite visualizar como os dados estão conectados, destacando as chaves primárias e estrangeiras que garantem a integridade referencial.
+
+Segue o diagrama relacional:
+
+![Modelo Relacional do Banco de Dados](./docs/modelo-banco.png)
 
 *Posicione aqui os diagramas de modelos relacionais do seu banco de dados, apresentando todos os esquemas de tabelas e suas relações. Utilize texto para complementar suas explicações, se necessário.*
 
