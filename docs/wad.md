@@ -22,9 +22,6 @@ O projeto consiste no desenvolvimento de um sistema de agendamentos de salas, on
 
 O sistema será útil em ambientes corporativos, educacionais ou coworkings, permitindo que usuários visualizem, agendem e consultem reservas de salas. A primeira entrega tem como foco estruturar o backend da aplicação, organizar as pastas e arquivos do projeto, modelar o banco de dados e garantir que o servidor esteja rodando corretamente com uma rota funcional.
 
-*Preencha com até 300 palavras – sem necessidade de fonte.*
-*Descreva brevemente o sistema que você irá desenvolver.*
-
 ---
 
 ## <a name="c2"></a>2. Visão Geral da Aplicação Web
@@ -47,13 +44,16 @@ Foi realizada uma modelagem de banco de dados que atende à lógica central do s
 
 O modelo relacional apresenta graficamente as entidades principais do sistema (users, rooms, bookings) e os relacionamentos entre elas. Ele permite visualizar como os dados estão conectados, destacando as chaves primárias e estrangeiras que garantem a integridade referencial.
 
-Segue o diagrama relacional:
+<div align = "center">
 
-![Modelo Relacional do Banco de Dados](./docs/modelo-banco.png)
+<sup>Figura 1: Forças de Porter do mercado da empresa Bayer.</sup><br>
 
-*Posicione aqui os diagramas de modelos relacionais do seu banco de dados, apresentando todos os esquemas de tabelas e suas relações. Utilize texto para complementar suas explicações, se necessário.*
+<img src="../assets/modelo-banco.png"><br>
 
-*Posicione também o modelo físico com o Schema do BD (arquivo .sql)*
+<sub>Fonte: Material produzido pelos autores (2025).</sub><br>
+</div>
+
+Já o modelo físico descreve tecnicamente a estrutura do banco de dados por meio de comandos SQL. Ele define os tipos de dados de cada campo, as restrições (como `NOT NULL` e `UNIQUE`) e a ligação entre tabelas através de `FOREIGN KEY`. Os modelos foram pensados para refletir a lógica de agendamento onde um usuário pode fazer várias reservas, ua sala pode ser reservada múltiplas vezes, e cada reserva deve conter a informação do usuário, da sala e do tempo de reserva. O código SQL se encontra em `projeto-individual\scripts\modelo-banco.sql`.
 
 ### 3.1.1 BD e Models (Semana 5)
 *Descreva aqui os Models implementados no sistema web*
