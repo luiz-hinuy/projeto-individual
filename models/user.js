@@ -1,6 +1,19 @@
 const db = require("./config/database.js");
 
 module.exports = {
+    
+    async getAll() {
+        const result = await db.query('SELECT * FROM users')
+        return result.rows[0]
+    },
+
+    async getAllbyID(id) {
+        const result = await db.query('SELECT * FROM users WHERE id = $1',
+            [id]
+        );
+        return result.rows[0]
+    },
+
     async create(name, email) {
         const result = await db.query('INSERT INTO users (name, email) VALUES ($1, $2) RETURNING *',
         [name, email]);
