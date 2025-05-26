@@ -22,10 +22,12 @@ module.exports = {
     },
 
     
-    async update(id, rooms_id, start_time, end_time) {
-        const result = await db.query('UPDATE bookings SET rooms_id = $1, start_time = $2, end_time = $3 WHERE id = $4 RETURNING *',
-        [id, rooms_id, start_time, end_time]);
-        return result.rows[0]
+    async update(id, rooms_id, user_id, start_time, end_time) {
+    const result = await db.query(
+        'UPDATE bookings SET rooms_id = $1, user_id = $2, start_time = $3, end_time = $4 WHERE id = $5 RETURNING *',
+        [rooms_id, user_id, start_time, end_time, id]
+    );
+    return result.rows[0];
     },
     
     async delete(id) {

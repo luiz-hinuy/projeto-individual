@@ -14,7 +14,7 @@ exports.getAllBookings = async (req, res) => {
 exports.getBookingById = async (req, res) => {
   const { id } = req.params;
   try {
-    const booking = await Bookings.getByID(id);
+    const booking = await Bookings.getAllbyID(id);
     if (!booking) {
       return res.status(404).json({ error: 'Booking not found' });
     }
@@ -59,6 +59,7 @@ exports.updateBooking = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
 
 // Delete a booking
 exports.deleteBooking = async (req, res) => {

@@ -3,26 +3,26 @@ const db = require("../config/database");
 module.exports = {
   async getAll() {
     const result = await db.query('SELECT * FROM rooms');
-    return result.rows; // Corrigido: antes retornava só a primeira linha
+    return result.rows;
   },
 
-  async getByID(id) { // Corrigido nome do método
+  async getByID(id) {
     const result = await db.query('SELECT * FROM rooms WHERE id = $1', [id]);
     return result.rows[0];
   },
 
-  async create(rooms_id, user_id, start_time, end_time) {
+  async create(number, location) {
     const result = await db.query(
-      'INSERT INTO rooms (rooms_id, user_id, start_time, end_time) VALUES ($1, $2, $3, $4) RETURNING *',
-      [rooms_id, user_id, start_time, end_time]
+      'INSERT INTO rooms (number, location) VALUES ($1, $2) RETURNING *',
+      [number, location]
     );
     return result.rows[0];
   },
 
-  async update(id, rooms_id, user_id, start_time, end_time) {
+  async update(id, number, location) {
     const result = await db.query(
-      'UPDATE rooms SET rooms_id = $1, user_id = $2, start_time = $3, end_time = $4 WHERE id = $5 RETURNING *',
-      [rooms_id, user_id, start_time, end_time, id]
+      'UPDATE rooms SET number = $1, location = $2 WHERE id = $3 RETURNING *',
+      [number, location, id]
     );
     return result.rows[0];
   },
