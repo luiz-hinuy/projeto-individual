@@ -1,0 +1,8 @@
+# Dependências do Node.js
+node_modules/
+
+# Dependências do pg (caso estejam em uma pasta específica)
+pg/
+
+# Arquivo de variáveis de ambiente
+.env

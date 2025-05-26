@@ -1,18 +1,21 @@
-CREATE TABLE "rooms" (
-  "id" integer PRIMARY KEY,
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+
+CREATE TABLE IF NOT EXISTS "rooms" (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   "number" integer,
   "location" varchar
 );
 
-CREATE TABLE "users" (
-  "id" integer PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS "users" (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   "name" varchar,
   "email" varchar,
   "password" varchar
 );
 
-CREATE TABLE "bookings" (
-  "id" integer PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS "bookings" (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   "user_id" integer NOT NULL,
   "rooms_id" integer NOT NULL,
   "status" varchar,
