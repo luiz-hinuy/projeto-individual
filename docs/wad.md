@@ -56,7 +56,46 @@ O modelo relacional apresenta graficamente as entidades principais do sistema (u
 Já o modelo físico descreve tecnicamente a estrutura do banco de dados por meio de comandos SQL. Ele define os tipos de dados de cada campo, as restrições (como `NOT NULL` e `UNIQUE`) e a ligação entre tabelas através de `FOREIGN KEY`. Os modelos foram pensados para refletir a lógica de agendamento onde um usuário pode fazer várias reservas, ua sala pode ser reservada múltiplas vezes, e cada reserva deve conter a informação do usuário, da sala e do tempo de reserva. O código SQL se encontra em `projeto-individual\scripts\modelo-banco.sql`.
 
 ### 3.1.1 BD e Models (Semana 5)
-*Descreva aqui os Models implementados no sistema web*
+
+O sistema possui três principais models, localizados na pasta `models`, que representam as entidades centrais do processo de agendamento de salas:
+
+#### 1. User
+
+O model `User` representa os usuários do sistema, responsáveis por realizar reservas. Os principais campos definidos são:
+
+- `id`: Identificador único do usuário (chave primária).
+- `name`: Nome do usuário.
+- `email`: E-mail do usuário (único).
+- `password`: Senha criptografada para autenticação.
+
+Esse model é utilizado para autenticação, cadastro e gerenciamento dos usuários.
+
+#### 2. Room
+
+O model `Room` representa as salas disponíveis para reserva. Seus principais campos são:
+
+- `id`: Identificador único da sala (chave primária).
+- `name`: Nome da sala.
+- `location`: Localização física da sala.
+- `capacity`: Capacidade máxima de pessoas.
+
+Esse model permite o cadastro, consulta e gerenciamento das salas.
+
+#### 3. Booking
+
+O model `Booking` representa as reservas realizadas pelos usuários. Os principais campos são:
+
+- `id`: Identificador único da reserva (chave primária).
+- `userId`: Referência ao usuário que fez a reserva (chave estrangeira).
+- `roomId`: Referência à sala reservada (chave estrangeira).
+- `startTime`: Data e hora de início da reserva.
+- `endTime`: Data e hora de término da reserva.
+
+Esse model garante que cada reserva esteja associada a um usuário e a uma sala, além de controlar os horários reservados.
+
+---
+
+Todos os models foram implementados utilizando um ORM (como Sequelize ou Prisma), facilitando a manipulação dos dados e garantindo a integridade referencial entre as tabelas. As validações, restrições e relacionamentos (como associações entre usuários, salas e reservas) estão devidamente configurados para refletir a lógica do sistema.
 
 ### 3.2. Arquitetura (Semana 5)
 
@@ -84,7 +123,75 @@ Já o modelo físico descreve tecnicamente a estrutura do banco de dados por mei
 
 ### 3.6. WebAPI e endpoints (Semana 05)
 
-*Utilize um link para outra página de documentação contendo a descrição completa de cada endpoint. Ou descreva aqui cada endpoint criado para seu sistema.*  
+A seguir estão descritos os principais endpoints implementados no sistema, organizados por entidade. Cada endpoint segue o padrão RESTful e utiliza os controllers para processar as requisições, interagindo com os models correspondentes.
+
+#### Usuários (`/users`)
+
+- **GET `/users`**  
+    Lista todos os usuários cadastrados.
+
+- **GET `/users/:id`**  
+    Retorna os dados de um usuário específico pelo seu ID.
+
+- **POST `/users`**  
+    Cria um novo usuário.  
+    Corpo esperado: `{ name, email, password }`
+
+- **PUT `/users/:id`**  
+    Atualiza os dados de um usuário existente.  
+    Corpo esperado: `{ name, email, password }`
+
+- **DELETE `/users/:id`**  
+    Remove um usuário do sistema.
+
+#### Salas (`/rooms`)
+
+- **GET `/rooms`**  
+    Lista todas as salas disponíveis.
+
+- **GET `/rooms/:id`**  
+    Retorna os dados de uma sala específica pelo seu ID.
+
+- **POST `/rooms`**  
+    Cadastra uma nova sala.  
+    Corpo esperado: `{ name, location, capacity }`
+
+- **PUT `/rooms/:id`**  
+    Atualiza os dados de uma sala existente.  
+    Corpo esperado: `{ name, location, capacity }`
+
+- **DELETE `/rooms/:id`**  
+    Remove uma sala do sistema.
+
+#### Reservas (`/bookings`)
+
+- **GET `/bookings`**  
+    Lista todas as reservas realizadas.
+
+- **GET `/bookings/:id`**  
+    Retorna os dados de uma reserva específica pelo seu ID.
+
+- **POST `/bookings`**  
+    Cria uma nova reserva.  
+    Corpo esperado: `{ userId, roomId, startTime, endTime }`
+
+- **PUT `/bookings/:id`**  
+    Atualiza os dados de uma reserva existente.  
+    Corpo esperado: `{ userId, roomId, startTime, endTime }`
+
+- **DELETE `/bookings/:id`**  
+    Remove uma reserva do sistema.
+
+#### Autenticação (`/auth`)
+
+- **POST `/auth/login`**  
+    Realiza o login do usuário.  
+    Corpo esperado: `{ email, password }`  
+    Retorna um token de autenticação em caso de sucesso.
+
+---
+
+Todos os endpoints validam os dados recebidos e retornam respostas apropriadas em caso de sucesso ou erro. Para detalhes sobre regras de negócio, validações e exemplos de resposta, consulte os controllers e models correspondentes no código-fonte.
 
 ### 3.7 Interface e Navegação (Semana 07)
 
