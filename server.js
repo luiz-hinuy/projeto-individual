@@ -6,6 +6,11 @@ const PORT = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Configuração do EJS como template engine
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
+app.use(express.static(__dirname + '/public'));
+
 // Rotas
 const usersRoutes = require('./routes/user');
 app.use('/users', usersRoutes);

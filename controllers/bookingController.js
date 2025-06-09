@@ -71,3 +71,27 @@ exports.deleteBooking = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+// Renderiza o formulário para criar nova reserva
+exports.newForm = (req, res) => {
+  res.render('bookings/new'); // Crie o arquivo views/bookings/new.ejs
+};
+
+// Renderiza o formulário para editar uma reserva existente
+exports.editForm = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const booking = await Bookings.getAllbyID(id);
+    if (!booking) {
+      return res.status(404).send('Reserva não encontrada');
+    }
+    res.render('bookings/edit', { booking }); // Crie o arquivo views/bookings/edit.ejs
+  } catch (err) {
+    res.status(500).send('Erro ao buscar reserva');
+  }
+};
+
+exports.index = async (req, res) => {
+  const bookings = await booking.getAll();
+  res.render('bookings/index', { bookings });
+};
