@@ -2,7 +2,20 @@ const db = require("../config/database");
 
 module.exports = {
     async getAll() {
-        const result = await db.query('SELECT * FROM bookings')
+        const result = await db.query(`
+        SELECT 
+        b.id, 
+        b.start_time, 
+        b.end_time, 
+        b.rooms_id, 
+        b.user_id,
+        r.number AS room_number,
+        u.name AS user_name
+        FROM bookings b
+        JOIN rooms r ON b.rooms_id = r.id
+        JOIN users u ON b.user_id = u.id
+        ORDER BY b.start_time DESC
+        `);
         return result.rows
     },
     

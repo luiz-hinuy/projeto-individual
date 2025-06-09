@@ -1,4 +1,6 @@
 const Bookings = require('../models/booking');
+const Users = require('../models/users');
+const Rooms = require('../models/room');
 
 // List all bookings
 exports.getAllBookings = async (req, res) => {
@@ -34,7 +36,7 @@ exports.createBooking = async (req, res) => {
 
   try {
     const booking = await Bookings.create(rooms_id, user_id, start_time, end_time);
-    res.status(201).json(booking);
+    res.redirect('/bookings'); // Redireciona para a lista de reservas após criar
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -73,8 +75,14 @@ exports.deleteBooking = async (req, res) => {
 };
 
 // Renderiza o formulário para criar nova reserva
-exports.newForm = (req, res) => {
-  res.render('bookings/new'); // Crie o arquivo views/bookings/new.ejs
+exports.newForm = async (req, res) => {
+  try {
+    const users = await Users.getAll();   // Busca todos os usuários
+    const rooms = await Rooms.getAll();   // Busca todos os quartos
+    res.render('bookings/new', { users, rooms });
+  } catch (err) {
+    res.status(500).send('Erro ao carregar formulário');
+  }
 };
 
 // Renderiza o formulário para editar uma reserva existente

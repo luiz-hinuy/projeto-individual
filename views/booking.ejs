@@ -1,4 +1,3 @@
-<!-- filepath: c:\Users\Inteli\Desktop\projeto-individual\views\booking.ejs -->
 <%- include('partials/header.ejs') %>
 <main>
   <h2>Reservas</h2>
@@ -16,8 +15,8 @@
       <% bookings.forEach(booking => { %>
         <tr>
           <td><%= booking.id %></td>
-          <td><%= booking.rooms_id %></td>
-          <td><%= booking.user_id %></td>
+          <td><%= booking.room_number %></td>
+          <td><%= booking.user_name %></td>
           <td><%= booking.start_time %></td>
           <td><%= booking.end_time %></td>
         </tr>
