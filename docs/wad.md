@@ -46,7 +46,7 @@ O modelo relacional apresenta graficamente as entidades principais do sistema (u
 
 <div align = "center">
 
-<sup>Figura 1: Forças de Porter do mercado da empresa Bayer.</sup><br>
+<sup>Figura 1: Modelagem relacional do banco de dados.</sup><br>
 
 <img src="../assets/modelo-banco.png"><br>
 
@@ -195,7 +195,51 @@ Todos os endpoints validam os dados recebidos e retornam respostas apropriadas e
 
 ### 3.7 Interface e Navegação (Semana 07)
 
-*Descreva e ilustre aqui o desenvolvimento do frontend do sistema web, explicando brevemente o que foi entregue em termos de código e sistema. Utilize prints de tela para ilustrar.*
+A interface web foi desenvolvida utilizando EJS para renderização das views. Os principais arquivos de view utilizados são:
+
+* `index.ejs`: Página inicial do sistema.
+
+<div align = "center">
+
+<sup>Figura 2: Pagina inicial.</sup><br>
+
+<img src="../assets/home.png"><br>
+
+<sub>Fonte: Material produzido pelos autores (2025).</sub><br>
+</div>
+
+* `booking.ejs`: Listagem de agendamentos, exibindo ID, número da sala, nome do usuário, início e fim.
+
+<div align = "center">
+
+<sup>Figura 3: Listagem de agendamentos.</sup><br>
+
+<img src="../assets/agendamentos.png"><br>
+
+<sub>Fonte: Material produzido pelos autores (2025).</sub><br>
+</div>
+
+* `new.ejs`: Formulário para criação de nova reserva, com seleção de sala (por número) e usuário (por nome).
+
+<div align = "center">
+
+<sup>Figura 4: Formulario de agendamento.</sup><br>
+
+<img src="../assets/formulario.png"><br>
+
+<sub>Fonte: Material produzido pelos autores (2025).</sub><br>
+</div>
+
+* `header.ejs` e `footer.ejs`: Componentes de cabeçalho e rodapé reutilizáveis.
+
+A navegação permite:
+
+* Visualizar todas as reservas em `/bookings`
+* Criar uma nova reserva em `/bookings/new`
+* Após criar uma reserva, o usuário é redirecionado automaticamente para a listagem de reservas.
+
+A interface foi estilizada com CSS próprio, tornando a navegação intuitiva e responsiva. O formulário de nova reserva utiliza selects dinâmicos para exibir os nomes dos usuários e os números das salas, facilitando o uso e evitando erros de digitação de IDs.
+
 
 ---
 
