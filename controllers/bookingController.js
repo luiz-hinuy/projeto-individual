@@ -91,7 +91,8 @@ exports.editForm = async (req, res) => {
   }
 };
 
+// filepath: c:\Users\Inteli\Desktop\projeto-individual\controllers\bookingController.js
 exports.index = async (req, res) => {
-  const bookings = await booking.getAll();
-  res.render('bookings/index', { bookings });
+  const bookings = await Bookings.getAll();
+  res.render('booking', { bookings });
 };

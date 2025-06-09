@@ -21,6 +21,9 @@ app.use('/bookings', bookingRoutes);
 const roomsRoutes = require('./routes/rooms');
 app.use('/rooms', roomsRoutes);
 
+app.get('/', (req, res) => {
+  res.render('index'); 
+});
 
 // Inicializa o servidor
 app.listen(PORT, () => {

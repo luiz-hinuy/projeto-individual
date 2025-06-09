@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/roomsController');
+const controller = require('../controllers/roomController');
 
 // Rotas de views (EJS)
 router.get('/', controller.index); // Lista rooms

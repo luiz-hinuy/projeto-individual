@@ -3,14 +3,14 @@ const db = require("../config/database");
 module.exports = {
     async getAll() {
         const result = await db.query('SELECT * FROM bookings')
-        return result.rows[0]
+        return result.rows
     },
     
     async getAllbyID(id) {
         const result = await db.query('SELECT * FROM bookings WHERE id = $1',
         [id]
         );
-        return result.rows[0]
+        return result.rows
     },
     
     async create(rooms_id, user_id, start_time, end_time) {

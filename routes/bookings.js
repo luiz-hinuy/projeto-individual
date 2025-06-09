@@ -1,16 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/bookingController');
+const bookingController = require('../controllers/bookingController');
 
 // Rotas de views (EJS)
-router.get('/', controller.index); // Lista bookings
-router.get('/new', controller.newForm); // Formulário novo booking
-router.get('/edit/:id', controller.editForm); // Formulário editar booking
+router.get('/', bookingController.index); // Lista de reservas
+router.get('/new', bookingController.newForm); // Formulário para nova reserva
+router.get('/edit/:id', bookingController.editForm); // Formulário para editar reserva
 
-// Rotas de API (JSON, para Fetch)
-router.get('/id/:id', controller.getByID);
-router.post('/post', controller.store);
-router.post('/edit/:id', controller.update);
-router.post('/delete/:id', controller.destroy);
+// Rotas de API (JSON, para Fetch ou AJAX)
+router.get('/id/:id', bookingController.getBookingById);
+router.post('/post', bookingController.createBooking);
+router.post('/edit/:id', bookingController.updateBooking);
+router.post('/delete/:id', bookingController.deleteBooking);
 
 module.exports = router;

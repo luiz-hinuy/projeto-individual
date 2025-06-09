@@ -1,5 +1,18 @@
 const Users = require('../models/users');
 
+exports.newForm = (req, res) => {
+  res.render('users/new'); // Crie o arquivo views/users/new.ejs
+};
+
+exports.editForm = async (req, res) => {
+  const { id } = req.params;
+  const user = await Users.getByID(id);
+  if (!user) {
+    return res.status(404).send('Usuário não encontrado');
+  }
+  res.render('users/edit', { user }); // Crie o arquivo views/users/edit.ejs
+};
+
 exports.index = async (req, res) => {
   try {
     const users = await Users.getAll();

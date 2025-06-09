@@ -1,17 +1,17 @@
-import Rooms from '../models/room.js';
+const Rooms = require('../models/room');
 
-export const index = async (_req, res) => {
+exports.index = async (req, res) => {
   const rooms = await Rooms.getAll();
   res.json(rooms);
 };
 
-export const store = async (req, res) => {
+exports.store = async (req, res) => {
   const { number, location } = req.body;
   const newRoom = await Rooms.create(number, location);
-  res.status(201).json(newRoom); // ✅ resposta útil
+  res.status(201).json(newRoom);
 };
 
-export const destroy = async (req, res) => {
+exports.destroy = async (req, res) => {
   const { id } = req.params;
   try {
     await Rooms.delete(id);
@@ -30,8 +30,34 @@ export const destroy = async (req, res) => {
   }
 };
 
-export const getByID = async (req, res) => {
+exports.getByID = async (req, res) => {
   const { id } = req.params;
   const room = await Rooms.getByID(id);
   res.json(room);
+};
+
+// Renderiza o formulário para criar nova sala
+exports.newForm = (req, res) => {
+  res.render('rooms/new'); // Crie o arquivo views/rooms/new.ejs
+};
+
+// Renderiza o formulário para editar uma sala existente
+exports.editForm = async (req, res) => {
+  const { id } = req.params;
+  const room = await Rooms.getByID(id);
+  if (!room) {
+    return res.status(404).send('Sala não encontrada');
+  }
+  res.render('rooms/edit', { room }); // Crie o arquivo views/rooms/edit.ejs
+};
+
+// Atualiza uma sala
+exports.update = async (req, res) => {
+  const { id } = req.params;
+  const { number, location } = req.body;
+  const updatedRoom = await Rooms.update(id, number, location);
+  if (!updatedRoom) {
+    return res.status(404).json({ error: 'Sala não encontrada' });
+  }
+  res.json(updatedRoom);
 };
