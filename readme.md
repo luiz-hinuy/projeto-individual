@@ -52,5 +52,34 @@ node server.js
 ```
 E por fim, escreva em seu navegador `http://localhost:3000/`
 
-Você verá a página inicial com a mensagem:
-"Bem-vindo ao sistema de agendamentos!"
+Você verá a página inicial com a mensagem: "Bem-vindo ao sistema de agendamentos!" e mais 3 botões: Home, Bookings, New Booking.
+
+Ao clicar em booking, você verá uma tela com uma tabela com todos os agendamentos no banco de dados:
+
+<div align = "center">
+
+<sup>Figura 1: Tela de bookings.</sup><br>
+
+<img src="../assets/agendamentos" width="300"><br>
+
+<sub>Fonte: Material produzido pelos autores (2025). </sub><br>
+
+</div>
+
+Para adicionar um novo agendamento, clique em New Booking. Ao clicar, será redirecionado para uma página com um formulário que pede número da sala, usuário, e datas de início e fim do agendamento:
+
+<div align = "center">
+
+<sup>Figura 2: Tela de criação de booking.</sup><br>
+
+<img src="../assets/formulario" width="300"><br>
+
+<sub>Fonte: Material produzido pelos autores (2025). </sub><br>
+
+</div>
+
+Para finalizar a criação, basta clicar em "Create Booking", e a reserva aparecerá na primeira linha da página "Bookings".
+
+Segue um link mosrando o funcionamento da apliacação:
+
+https://youtu.be/f1Mvt7JC43k
